@@ -123,4 +123,16 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Quote Lock Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This value determines how long (in minutes) a price quote remains valid
+    | before requiring a re-quote due to market volatility.
+    |
+    */
+
+    'quote_lock' => env('QUOTE_LOCK_MINUTES', 5),
+
 ];

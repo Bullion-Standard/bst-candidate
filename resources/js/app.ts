@@ -10,9 +10,13 @@ import { initializeTheme } from './composables/useAppearance';
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
-    resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
+    title: (title: string) => (title ? `${title} - ${appName}` : appName),
+    resolve: (name: string) => {
+        const page = resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue'));
+        console.log(page, name);
+        return page;
+    },
+    setup({ el, App, props, plugin }: { el: HTMLElement; App: DefineComponent; props: any; plugin: any }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
